@@ -35,6 +35,15 @@
     <b><h2> Please Fill out the form for Booking </h2></b><br>
     <form action="{% url 'booking:con_indi' %}" method="POST" >
         {% csrf_token %}
+
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <h4>{{ form|crispy }}</h4><br>
         <input type="submit" value="Book Now" class="btn btn-success pull-right">
     </form>

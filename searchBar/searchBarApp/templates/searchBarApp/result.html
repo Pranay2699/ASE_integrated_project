@@ -13,9 +13,9 @@
             				<div class="row">
             					<div class="col">
             						<div class="home_content">
-            							<div class="home_title">{{instance.id_name}}</div>
-            							<div class="home_text">Explore the joy of visiting companies that you love </div>
-            							<div class="button home_button" style="background-color:#3385ff;"><a href="#"><span>read more</span><span>read whole</span></a></div>
+            							<div class="home_title" style="color: black">{{instance.id_name}}</div>
+            							<div class="home_text" style="color: black">Explore the joy of visiting companies that you love </div>
+{#            							<div class="button home_button" style="background-color:#3385ff;"><a href="#"><span>read more</span><span>read whole</span></a></div>#}
             						</div>
             					</div>
             				</div>
@@ -28,7 +28,8 @@
 
         		</div>
         	</div>
-           <div class="col-lg-7">
+    <br><br><br>
+           <div class="col-lg-7" style="float: left;">
             <div class="faq" >
               <div class="faq_title">Details about {{instance.id_name}}</div>
               <div class="faq_subtitle">Get to know about {{instance.id_name}}</div>
@@ -48,16 +49,16 @@
                     <div class="accordion d-flex flex-row align-items-center" style="width:50%"><div>Location</div></div>
                     <div class="accordion_panel">
                       <div>
-                        <p>instance.location</p>
+                        <p>{{instance.location}}</p>
                       </div>
                     </div>
                   </div>
 
                   <div class="accordion_container">
-                    <div class="accordion d-flex flex-row align-items-center" style="width:50%"><div>Category</div></div>
+                    <div class="accordion d-flex flex-row align-items-center" ><div>Category</div></div>
                     <div class="accordion_panel">
                       <div>
-                        <p>{{instance.details}}</p>
+                        <p>{{instance.category}}</p>
                       </div>
                     </div>
                   </div>
@@ -66,8 +67,43 @@
             </div>
           </div>
 
+    <div class="pac-card" id="pac-card" style="height: 400px;width:450px;float: left">
+      <div>
+        <div id="title">
+          Search for industry location
+        </div>
+        <div id="type-selector" class="pac-controls">
+          <input type="radio" name="type" id="changetype-all" checked="checked">
+          <label for="changetype-all">All</label>
 
-        <br><br>
+          <input type="radio" name="type" id="changetype-establishment">
+          <label for="changetype-establishment">Establishments</label>
+
+          <input type="radio" name="type" id="changetype-address">
+          <label for="changetype-address">Addresses</label>
+
+          <input type="radio" name="type" id="changetype-geocode">
+          <label for="changetype-geocode">Geocodes</label>
+        </div>
+        <div id="strict-bounds-selector" class="pac-controls">
+          <input type="checkbox" id="use-strict-bounds" value="">
+          <label for="use-strict-bounds">Strict Bounds</label>
+        </div>
+      </div>
+      <div id="pac-container">
+        <input id="pac-input" type="text"
+            placeholder="Enter a location">
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span>
+    </div>
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
                      <div class="container">
                        <div class="row">

@@ -8,6 +8,8 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from basicapp.forms import UserForm
 
 import random
 import string
@@ -42,8 +44,11 @@ def con_indi(request):
     if request.method == 'POST':
         form = PostForm1(request.POST)
         if form.is_valid() :
+
+
             name_person = form.cleaned_data['name_person']
             industry_name = form.cleaned_data['industry_name']
+            email=form.cleaned_data['email']
             date_visit = form.cleaned_data['date_visit']
             slot_time = form.cleaned_data['slot_time']
             visiting_members = form.cleaned_data['visiting_members']
@@ -51,10 +56,13 @@ def con_indi(request):
             city_name = form.cleaned_data['city_name']
             pin_code = form.cleaned_data['pin_code']
             code = rand_str()
-            p = BookingListIndi(name_person=name_person, industry_name=industry_name, date_visit=date_visit,
+            user = User.objects.get(username=request.user)
+            p = BookingListIndi(user=user,name_person=name_person, industry_name=industry_name,email=email, date_visit=date_visit,
                                 slot_time=slot_time, visiting_members=visiting_members, street_name=street_name,
                                 city_name=city_name, pin_code=pin_code, code=code)
             p.save()
+
+
             total = Tickets.objects.filter(day = date_visit).filter(slot = slot_time).count()
             if total == 0:
                 tick = Tickets.objects.create(day = date_visit,slot = slot_time,ticks = 20-visiting_members)
@@ -69,7 +77,7 @@ def con_indi(request):
             user = form.save(commit=False)
             user.is_active = False
             current_site = get_current_site(request)
-            to_email = 'lushaankkancherla1999@gmail.com'
+            to_email = email
             site = 'booking/ticket_gen_indi.html'
             sending_email(site, user, current_site, code, to_email)
             return render(request, 'booking/success.html')
@@ -87,6 +95,7 @@ def con_orga(request):
             name_person = form.cleaned_data['name_person']
             industry_name = form.cleaned_data['industry_name']
             organisation_name = form.cleaned_data['organisation_name']
+            email = form.cleaned_data['email']
             date_visit = form.cleaned_data['date_visit']
             slot_time = form.cleaned_data['slot_time']
             visiting_members = form.cleaned_data['visiting_members']
@@ -94,7 +103,7 @@ def con_orga(request):
             city_name = form.cleaned_data['city_name']
             pin_code = form.cleaned_data['pin_code']
             code = rand_str()
-            p = BookingListOrga(name_person=name_person, industry_name=industry_name,
+            p = BookingListOrga(name_person=name_person, industry_name=industry_name,email=email,
                                 organisation_name=organisation_name, date_visit=date_visit, slot_time=slot_time,
                                 visiting_members=visiting_members, street_name=street_name, city_name=city_name,
                                 pin_code=pin_code, code=code)
@@ -114,7 +123,7 @@ def con_orga(request):
             user = form.save(commit=False)
             user.is_active = False
             current_site = get_current_site(request)
-            to_email = 'lushaankkancherla1999@gmail.com'
+            to_email = email
             site = 'booking/ticket_gen_orga.html'
             sending_email(site, user, current_site, code, to_email)
             return render(request, 'booking/success.html')

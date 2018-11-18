@@ -5,7 +5,7 @@ import datetime
 class PostForm1(forms.ModelForm):
     class Meta:
         model = BookingListIndi
-        exclude = ('code', 'visited', 'total_available', 'total_taken')
+        exclude = ('code', 'visited', 'total_available', 'total_taken','user')
 
     def clean(self):
         all_clean_data = super().clean()
@@ -32,8 +32,8 @@ class PostForm1(forms.ModelForm):
             tk = Tickets.objects.get(pk = tc.id)
             num += tk.ticks
         num1 = 20 - num
-        if num1 < all_clean_data['visiting_members']:
-            self.add_error("slot_time","The tickets available are : " + str(num) +" Please select another slot.")
+        if num1 < num_visit:
+            self.add_error("slot_time","The tickets available are : " + str(num1) +" Please select another slot.")
 
 class PostForm2(forms.ModelForm):
     class Meta:
