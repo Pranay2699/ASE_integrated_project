@@ -250,6 +250,7 @@
 													<li class="active"><a href="{% url 'searchBarApp:searching' %}">Home</a></li>
 													<li><a href="{% url 'searchBarApp:contact' %}">Contact</a></li>
 													<li><a href="{% url 'searchBarApp:blog' %}">Blog</a></li>
+{#                                                    <li><a href="{% url 'chat:room' %}">Chat</a></li>#}
 													{% if user.is_authenticated %}
 														<li><a href="{% url 'user_logout' %}">Logout</a></li>
 														<li>{{ user.username }}</li>
@@ -290,6 +291,9 @@
 
 												{%endblock%}
 	<!-- Footer -->
+
+        <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'final_app:review' %}'" >Reviews and Ratings</button>
+
 
 	<footer class="footer" >
 		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static "images/Footer.jpg"%}" data-speed="1"></div>

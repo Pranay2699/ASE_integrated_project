@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'searchBarApp',
     'booking',
     'crispy_forms',
+    # 'chat',
+    'final_app',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -81,6 +83,22 @@ TEMPLATES = [
         },
     },
 ]
+
+#-------------------------------------------------#
+# Channels
+#Channels ASGI_APPLICATION = 'mysite.routing.application'
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
+#-------------------------------------------------#
+
+
+
 
 WSGI_APPLICATION = 'searchBar.wsgi.application'
 

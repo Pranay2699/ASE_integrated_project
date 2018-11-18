@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^search/',include('searchBarApp.urls')),
     url(r'^basicapp/',include('basicapp.urls')),
     url(r'^booking/', include('booking.urls')),
-
+    url(r'^review/', include('final_app.urls')),
+    # url(r'^chat/',include('chat.urls')),
     url(r'^logout/$',views.user_logout,name="user_logout"),
     url(r'^special/$',views.special,name="special"),
 
