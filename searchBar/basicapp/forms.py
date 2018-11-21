@@ -39,3 +39,16 @@ class UserProfileInfoForms(forms.ModelForm):
             raise forms.ValidationError("Gender should be either male, female or other")
 
         return gen
+
+
+class UpdateUser(forms.ModelForm):
+    username=forms.CharField(max_length=120)
+    email=forms.EmailField()
+    class Meta():
+        model=User
+        fields=("username","email")
+
+class UpdateProfile(forms.ModelForm):
+    class Meta():
+        model = UserProfileInfo
+        fields = ("name", "gender")

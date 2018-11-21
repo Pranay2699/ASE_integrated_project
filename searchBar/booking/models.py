@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 timings = (('1','9:30'),('2','11:30'),('3','14:30'))
 
 class BookingListIndi(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+    user1=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     name_person = models.CharField(max_length=200)
     industry_name = models.CharField(max_length=100)
     email=models.EmailField(null=True)
@@ -19,8 +19,11 @@ class BookingListIndi(models.Model):
     code = models.CharField(max_length=20)
     visited = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.name_person
+
 class BookingListOrga (models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    user1= models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     name_person = models.CharField(max_length=200)
     organisation_name = models.CharField(max_length=200)
     industry_name = models.CharField(max_length=100)
@@ -36,7 +39,13 @@ class BookingListOrga (models.Model):
     code = models.CharField(max_length=20)
     visited = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.organisation_name
+
 class Tickets(models.Model):
     day = models.DateField()
     slot = models.CharField(max_length = 10)
     ticks = models.IntegerField(default = 20)
+
+    def __str__(self):
+        return self.day

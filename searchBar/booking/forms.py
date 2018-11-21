@@ -5,7 +5,7 @@ import datetime
 class PostForm1(forms.ModelForm):
     class Meta:
         model = BookingListIndi
-        exclude = ('code', 'visited', 'total_available', 'total_taken','user')
+        exclude = ('code', 'visited', 'total_available', 'total_taken','user1')
 
     def clean(self):
         all_clean_data = super().clean()
@@ -38,7 +38,7 @@ class PostForm1(forms.ModelForm):
 class PostForm2(forms.ModelForm):
     class Meta:
         model = BookingListOrga
-        exclude = ('code', 'visited', 'total_available', 'total_taken')
+        exclude = ('code', 'visited', 'total_available', 'total_taken','user1')
 
     def clean(self):
         all_clean_data = super().clean()

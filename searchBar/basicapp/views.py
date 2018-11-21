@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect #Also importing redirect
-from basicapp.forms import UserForm,UserProfileInfoForms
+from basicapp.forms import UserForm,UserProfileInfoForms,UpdateProfile,UpdateUser
 
 
 from django.contrib.auth import authenticate,login,logout
@@ -129,3 +129,28 @@ def user_login(request):
             return HttpResponse("INVALID LOGIN DETAILS SUPPLIED")
     else:
         return render(request,"basicapp/login.html")
+
+
+
+@login_required
+def profile(request):
+    user_form=UpdateUser(instance=request.user)
+    profile_form=UpdateProfile(instance=request.user.userprofileinfo)
+
+    return render(request,"basicapp/profile.html",{'user_form':user_form,'profile_form':profile_form})
+
+
+@login_required
+def update(request):
+    if request.method == 'POST':
+        user_form=UpdateUser(request.POST,instance=request.user)
+        user_profile=UpdateProfile(request.POST,instance=request.user.userprofileinfo)
+
+        if user_form.is_valid() and user_profile.is_valid():
+            user_form.save()
+            user_profile.save()
+            return render(request,"basicapp/profile.html")
+    else:
+        user_form=UpdateUser(instance=request.user)
+        profile_form=UpdateProfile(instance=request.user.userprofileinfo)
+        return render(request,"basicapp/update_profile.html",{'user_form':user_form,'profile_form':profile_form})

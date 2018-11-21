@@ -56,8 +56,8 @@ def con_indi(request):
             city_name = form.cleaned_data['city_name']
             pin_code = form.cleaned_data['pin_code']
             code = rand_str()
-            user = User.objects.get(username=request.user)
-            p = BookingListIndi(user=user,name_person=name_person, industry_name=industry_name,email=email, date_visit=date_visit,
+            user1 = User.objects.get(username=request.user.username)
+            p = BookingListIndi(user1=user1,name_person=name_person, industry_name=industry_name,email=email, date_visit=date_visit,
                                 slot_time=slot_time, visiting_members=visiting_members, street_name=street_name,
                                 city_name=city_name, pin_code=pin_code, code=code)
             p.save()
@@ -103,7 +103,8 @@ def con_orga(request):
             city_name = form.cleaned_data['city_name']
             pin_code = form.cleaned_data['pin_code']
             code = rand_str()
-            p = BookingListOrga(name_person=name_person, industry_name=industry_name,email=email,
+            user1 = User.objects.get(username=request.user.username)
+            p = BookingListOrga(user1=user1,name_person=name_person, industry_name=industry_name,email=email,
                                 organisation_name=organisation_name, date_visit=date_visit, slot_time=slot_time,
                                 visiting_members=visiting_members, street_name=street_name, city_name=city_name,
                                 pin_code=pin_code, code=code)

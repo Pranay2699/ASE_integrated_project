@@ -25,7 +25,13 @@
 <link rel="stylesheet" type="text/css" href="{% static "styles/main_styles.css"%}">
 <link rel="stylesheet" type="text/css" href="{% static "styles/responsive.css"%}">
 
-		<style >
+{#For Profile page   #}
+{#    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
+{#    <link rel="stylesheet" href="{% static 'profile/profile.css' %}">#}
+{#    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>#}
+{#    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+{#End link for profile page    #}
+    <style >
 
 	#myBtn2 {
   display: none;
@@ -253,7 +259,7 @@
 {#                                                    <li><a href="{% url 'chat:room' %}">Chat</a></li>#}
 													{% if user.is_authenticated %}
 														<li><a href="{% url 'user_logout' %}">Logout</a></li>
-														<li>{{ user.username }}</li>
+                                                        <li><a href="{% url 'basicapp:profile' %}">{{ user.username }}</a></li>
 													{% else %}
 														<li><a href="{% url 'basicapp:user_login' %}">Login</a></li>
 														<li><a href="{% url 'basicapp:register' %}">SignUp</a></li>
@@ -292,7 +298,7 @@
 												{%endblock%}
 	<!-- Footer -->
 
-        <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'final_app:review' %}'" >Reviews and Ratings</button>
+{#        <button type="button" class="btn btn-success btn-lg" style="background-color:#3385ff;" onclick="location.href='{% url 'final_app:review' %}'" >Reviews and Ratings</button>#}
 
 
 	<footer class="footer" >
