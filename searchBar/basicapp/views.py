@@ -15,6 +15,9 @@ from django.template.loader import render_to_string
 from basicapp.tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+
+from booking.models import BookingListIndi
+
 #End of models for email conformation
 
 
@@ -154,3 +157,8 @@ def update(request):
         user_form=UpdateUser(instance=request.user)
         profile_form=UpdateProfile(instance=request.user.userprofileinfo)
         return render(request,"basicapp/update_profile.html",{'user_form':user_form,'profile_form':profile_form})
+
+@login_required
+def visited_industries(request):
+    visited=BookingListIndi.objects.filter(user1=request.user)
+    return render(request,'basicapp/visited.html',{'visited':visited})
