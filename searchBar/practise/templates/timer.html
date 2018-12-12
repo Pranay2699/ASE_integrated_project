@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function(){
+          var time = 5;
+
+          function redirect(){
+            setTimeout(redirect,1000);
+            $(".timer").html(time)
+            if(time == 0)
+            {
+                window.location.href = 'http://127.0.0.1:8000'
+            }
+            time--;
+          }
+          redirect()
+        });
+      </script>
+  </head>
+  <body>
+    <h1>Your feedback has been recorded.
+      Thank you for sparing your time.
+      Our website will be redirected in <span class = "timer">0 </span>seconds</h1>
+  </body>
+</html>

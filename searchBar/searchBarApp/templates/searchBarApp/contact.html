@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 {% extends 'searchBarApp/base.html'%}
 
+
+
+{% block active %}<li ><a  class="cool-link" href="{% url 'searchBarApp:searching' %}">  Home </a></li> {% endblock active %}
+{%block contact_active%}<li class="active" ><a class="cool-link" href="{% url 'searchBarApp:contact' %}">Contact</a></li>{%endblock contact_active%}
+
 {%block body_block%}
 <br><br><br><br><br><br><br>
 <h1 style="text-align:center">Contact us</h1>
